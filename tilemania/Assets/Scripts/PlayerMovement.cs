@@ -3,18 +3,23 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private GameObject bullet;
+    [SerializeField] private Transform gun;
     [SerializeField] private float moveSpeed = 10F;
     [SerializeField] private float jumpSpeed = 20F;
     [SerializeField] private float climbSpeed = 5F;
+    [SerializeField] private Vector2 deathKick = new(0F, 20F);
     
     private static readonly int IsRunning = Animator.StringToHash("isRunning");
     private static readonly int IsClimbing = Animator.StringToHash("isClimbing");
+    private static readonly int Dying = Animator.StringToHash("Dying");
     private Vector2 _moveInput;
     private Rigidbody2D _myRigidBody;
     private Animator _myAnimator;
     private CapsuleCollider2D _myCapsuleCollider;
     private BoxCollider2D _myBoxCollider;
     private float _initialPlayerGravity;
+    private bool _isAlive = true;
     
     private void Start()
     {
@@ -27,13 +32,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (!_isAlive) return;
         Run();
         FlipSprite();
         ClimbLadder();
+        Die();
     }
 
     private void OnMove(InputValue input)
     {
+        if (!_isAlive) return;
         _moveInput = input.Get<Vector2>();
     }
 
@@ -87,5 +95,22 @@ public class PlayerMovement : MonoBehaviour
         
         var climbVelocity = new Vector2(_myRigidBody.linearVelocity.x, _moveInput.y * climbSpeed);
         _myRigidBody.linearVelocity = climbVelocity;
+    }
+
+    private void OnAttack(InputValue input)
+    {
+        if (!_isAlive) return;
+        Instantiate(bullet, gun.position, transform.rotation);
+    }
+
+    private void Die()
+    {
+        if (_myRigidBody.IsTouchingLayers(LayerMask.GetMask("Enemy", "Hazards")))
+        {
+            _isAlive = false;
+            _myAnimator.SetTrigger(Dying);
+            _myRigidBody.linearVelocity = deathKick;
+            FindAnyObjectByType<GameSession>().ProcessPlayerDeath();
+        }
     }
 }
