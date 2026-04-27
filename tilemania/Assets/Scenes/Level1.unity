@@ -96150,6 +96150,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScenePersist
       objectReference: {fileID: 0}
+    - target: {fileID: 6699513150036409152, guid: ec5d0776d0d71469bbd5c3c766a2962a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.395
+      objectReference: {fileID: 0}
+    - target: {fileID: 6699513150036409152, guid: ec5d0776d0d71469bbd5c3c766a2962a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.019
+      objectReference: {fileID: 0}
+    - target: {fileID: 8696229563223479970, guid: ec5d0776d0d71469bbd5c3c766a2962a, type: 3}
+      propertyPath: m_Size.x
+      value: 0.06549454
+      objectReference: {fileID: 0}
+    - target: {fileID: 8696229563223479970, guid: ec5d0776d0d71469bbd5c3c766a2962a, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.44028568
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

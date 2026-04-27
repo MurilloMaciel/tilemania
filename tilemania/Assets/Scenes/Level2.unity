@@ -7126,7 +7126,9 @@ PrefabInstance:
       value: ScenePersist
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3729033951530667436, guid: ec5d0776d0d71469bbd5c3c766a2962a, type: 3}
+    - {fileID: 3952843331976103724, guid: ec5d0776d0d71469bbd5c3c766a2962a, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3774640749531408232, guid: ec5d0776d0d71469bbd5c3c766a2962a, type: 3}
       insertIndex: -1
@@ -92484,11 +92486,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5164618093574865183, guid: 2e407ce36560c40a8a2b1b07105992ce, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.084328
+      value: -13.6192255
       objectReference: {fileID: 0}
     - target: {fileID: 5164618093574865183, guid: 2e407ce36560c40a8a2b1b07105992ce, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.82839
+      value: 0.82914996
       objectReference: {fileID: 0}
     - target: {fileID: 5164618093574865183, guid: 2e407ce36560c40a8a2b1b07105992ce, type: 3}
       propertyPath: m_LocalPosition.z
