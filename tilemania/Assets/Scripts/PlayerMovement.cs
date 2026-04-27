@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -105,12 +106,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void Die()
     {
-        if (_myRigidBody.IsTouchingLayers(LayerMask.GetMask("Enemy", "Hazards")))
-        {
-            _isAlive = false;
-            _myAnimator.SetTrigger(Dying);
-            _myRigidBody.linearVelocity = deathKick;
-            FindAnyObjectByType<GameSession>().ProcessPlayerDeath();
-        }
+        if (!_myRigidBody.IsTouchingLayers(LayerMask.GetMask("Enemy", "Hazards"))) return;
+        _isAlive = false;
+        _myAnimator.SetTrigger(Dying);
+        _myRigidBody.linearVelocity = deathKick;
+        StartCoroutine(HandleDeath());
+    }
+
+    private IEnumerator HandleDeath()
+    {
+        yield return new WaitForSeconds(1.5f);
+        FindAnyObjectByType<GameSession>().ProcessPlayerDeath();
     }
 }

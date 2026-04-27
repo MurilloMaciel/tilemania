@@ -14,12 +14,18 @@ public class EnemyMovement : MonoBehaviour
     {
         _myRigidBody2D.linearVelocityX = moveSpeed;
     }
-
+    
     private void OnTriggerExit2D(Collider2D other)
     {
         moveSpeed = -moveSpeed;
         FlipEnemyFacing();
     }
+
+    // private void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     moveSpeed = -moveSpeed;
+    //     FlipEnemyFacing();
+    // }
 
     private void FlipEnemyFacing()
     {
